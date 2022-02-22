@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin - Vendas</title>
+        <link rel="stylesheet" href="../vendor/css/bootstrap.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+
+        <link rel="stylesheet" href="../assets/css/style.css">
+
+        <script src="../vendor/js/bootstrap.bundle.js"></script>
+    </head>
+    <body class="container-fluid">
+        <header class="border-bottom">
+              <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start mb-4">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
+                        <path d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.598.598 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.598.598 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.598.598 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535L7.733.063z"/>
+                        <path d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.598.598 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.659z"/>
+                      </svg>
+                </a>
+        
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                  <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
+                  <li><a href="#" class="nav-link px-2 link-dark">Produtos</a></li>
+                  <li><a href="#" class="nav-link px-2 link-dark">Troca</a></li>
+                  <li><a href="#" class="nav-link px-2 link-dark">Contato</a></li>
+                </ul>
+        
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                  <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+        
+                <div class="dropdown text-end">
+                  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                  </a>
+                  <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#teste" data-bs-toggle="modal">Cadastro</a></li>
+                    <li><a class="dropdown-item" href="#">Dados da Conta</a></li>
+                    <li><a class="dropdown-item" href="#">Carrinho</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                  </ul>
+                </div>
+            </div>
+
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4" aria-label="Tenth navbar example">
+                <div class="container-fluid">
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+            
+                  <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="clientes.html">Clientes</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="produtos.html">Produtos</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" href="vendas.html">Vendas</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="envios.html">Envios</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="cupons.html">Cupum</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="usuarios.html">Usuarios</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-bs-toggle="dropdown" aria-expanded="false">Outros</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown08">
+                          <li><a class="dropdown-item" href="trocas.html">Trocas</a></li>
+                          <li><a class="dropdown-item" href="#">Outro Nav</a></li>
+                          <li><a class="dropdown-item" href="#">Outro Nav</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+        </header>
+        <main class="container">
+            <div class="table-title">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h2>Manage <b>Vendas</b></h2>
+                </div>
+                <div class="col-sm-6">
+                  <a href="#addVendasModal" class="btn btn-success" data-bs-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add</span></a>
+                  <a href="#deleteVendasModal" class="btn btn-danger" data-bs-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+                </div>
+                <div class="col-sm-3">
+                  <form class="d-flex">
+                    <input id="txtBusca" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button id="botaoenviar" type="submit">Buscar</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <table id="lista" class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Nome Produto</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Valor Total</th>
+                    <th scope="col">Frete</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Data Venda</th>
+                    <th scope="col">Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    <tr>
+                        <td>1</td>
+                        <td>Mark</td>
+                        <td>Produto 01</td>
+                        <td>5</td>
+                        <td>R$50,00</td>
+                        <td>R$15,00</td>
+                        <td>AGUARDANDO PAGAMENTO</td>
+                        <td>01/01/1999</td>
+                        <td>
+                          <a href="#editVendasModal" class="edit" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                          <a href="#deleteVendasModal" class="delete" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Mark</td>
+                        <td>Produto 01</td>
+                        <td>5</td>
+                        <td>R$50,00</td>
+                        <td>R$15,00</td>
+                        <td>AGUARDANDO PAGAMENTO</td>
+                        <td>01/01/1999</td>
+                        <td>
+                          <a href="#editVendasModal" class="edit" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                          <a href="#deleteVendasModal" class="delete" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Mark</td>
+                        <td>Produto 01</td>
+                        <td>5</td>
+                        <td>R$50,00</td>
+                        <td>R$15,00</td>
+                        <td>REPROVADO</td>
+                        <td>01/01/1999</td>
+                        <td>
+                          <a href="#editVendasModal" class="edit" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                          <a href="#deleteVendasModal" class="delete" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>Bruno</td>
+                      <td>Produto 01</td>
+                      <td>5</td>
+                      <td>R$50,00</td>
+                      <td>R$15,00</td>
+                      <td>PAGO</td>
+                      <td>01/01/1999</td>
+                      <td>
+                        <a href="#editVendasModal" class="edit" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                        <a href="#deleteVendasModal" class="delete" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>Pedro</td>
+                    <td>Produto 01</td>
+                    <td>5</td>
+                    <td>R$50,00</td>
+                    <td>R$15,00</td>
+                    <td>PAGO</td>
+                    <td>01/01/1999</td>
+                    <td>
+                      <a href="#editVendasModal" class="edit" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                      <a href="#deleteVendasModal" class="delete" data-bs-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                    </td>
+                </tr>
+                </tbody>
+              </table>
+
+              <nav aria-label="Page navigation example">
+                  <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                      <a class="page-link">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#">Next</a>
+                    </li>
+                  </ul>
+              </nav>
+        </main>
+        <footer class="py-3 my-4">
+                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Produtos</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Troca</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Contato</a></li>
+                </ul>
+                <p class="text-center text-muted">&copy; 2021 Company, Inc</p>
+        </footer>
+
+        <!-- Modal de Cadastro de Usuario -->
+        <div id="teste" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content rounded-5 shadow">
+                    <div class="modal-header p-5 pb-4 border-bottom-0">
+                        <!-- <h5 class="modal-title">Modal title</h5> -->
+                        <h2 class="fw-bold mb-0">Inscreva-se gratuitamente</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                
+                    <div class="modal-body p-5 pt-0">
+                        <form class="">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com" required>
+                            <label for="floatingInput">Endereço de Email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password" required>
+                            <label for="floatingPassword">Senha</label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Sign up</button>
+                        <small class="text-muted">Ao clicar em Cadastre-se, você concorda com os termos de uso..</small>
+                        <hr class="my-4">
+                        <h2 class="fs-5 fw-bold mb-3">Ou use um terceiro</h2>
+                        <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-4" type="submit">
+                            <svg class="bi me-1" width="16" height="16"><use xlink:href="#twitter"/></svg>
+                            Inscreva-se com o Twitter
+                        </button>
+                        <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-4" type="submit">
+                            <svg class="bi me-1" width="16" height="16"><use xlink:href="#facebook"/></svg>
+                            Inscreva-se com o Facebook
+                        </button>
+                        <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-4" type="submit">
+                            <svg class="bi me-1" width="16" height="16"><use xlink:href="#github"/></svg>
+                            Inscreva-se com o GitHub
+                        </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADD Modal HTML -->
+        <div id="addVendasModal" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form>
+                <div class="modal-header">						
+                  <h1 class="modal-title">Add Venda</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <fieldset>
+                    <label for="venda"><h3>Dados Cadastrais</h3></label>					
+                    
+                    <div class="row g-1">
+                      <div class="col-2">
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" placeholder="ID Cliente" aria-label="idCliente">
+                        </div>
+                      </div>
+
+                      <div class="col-10">
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" placeholder="Nome Cliente" aria-label="nomeCliente" >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row g-1">
+                      <div class="col-2">
+                        <div class="input-group mb-3">
+                          <input type="number" class="form-control" placeholder="ID Produto" aria-label="idProduto">
+                        </div>
+                      </div>
+
+                      <div class="col-8">
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" placeholder="Nome Produto" aria-label="nomeProduto" >
+                        </div>
+                      </div>
+
+                      <div class="col-2">
+                        <div class="input-group mb-3">
+                          <input type="number" class="form-control" placeholder="Quantidade" aria-label="quantidade" >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row g-1">
+                      <div class="col-6">
+                        <div class="input-group mb-3">
+                          <span class="input-group-text">R$</span>
+                          <input type="text" class="form-control" placeholder="Valor Total" aria-label="Real">
+                          <span class="input-group-text">.00</span>
+                        </div>
+                      </div>
+
+                      <div class="col-6">
+                        <div class="input-group mb-3">
+                          <span class="input-group-text">R$</span>
+                          <input type="text" class="form-control" placeholder="Frete" aria-label="Real">
+                          <span class="input-group-text">.00</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row g-1">
+                      <div class="col">
+                        <select class="form-select mb-3" aria-label="Default select example">
+                          <option selected>Something...</option>
+                          <option value="1">some..</option>
+                          <option value="2">any...</option>
+                          <option value="3">others...</option>
+                        </select>
+                      </div>
+                    
+                      <div class="col">
+                        <select class="form-select mb-3" aria-label="Default select example">
+                          <option selected>Status</option>
+                          <option value="1">AGUARDANDO PAGAMENTO</option>
+                          <option value="2">REPROVADO</option>
+                          <option value="3">PAGO</option>
+                        </select>
+                      </div>
+
+                      <div class="col">
+                        <input type="date" class="form-control" placeholder="Data Nascimento" aria-label="DataNascimento">
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="modal-footer">
+                  <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                  <input type="submit" class="btn btn-success" value="Salvar">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Edit Modal HTML -->
+        <div id="editVendasModal" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form>
+                <div class="modal-header">						
+                  <h1 class="modal-title">Edit Venda</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <fieldset>
+                    <label for="venda"><h3>Dados Cadastrais</h3></label>					
+                    
+                    <div class="row g-1">
+                      <div class="col-2">
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" placeholder="ID Cliente" aria-label="idCliente">
+                        </div>
+                      </div>
+
+                      <div class="col-10">
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" placeholder="Nome Cliente" aria-label="nomeCliente" >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row g-1">
+                      <div class="col-2">
+                        <div class="input-group mb-3">
+                          <input type="number" class="form-control" placeholder="ID Produto" aria-label="idProduto">
+                        </div>
+                      </div>
+
+                      <div class="col-8">
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" placeholder="Nome Produto" aria-label="nomeProduto" >
+                        </div>
+                      </div>
+
+                      <div class="col-2">
+                        <div class="input-group mb-3">
+                          <input type="number" class="form-control" placeholder="Quantidade" aria-label="quantidade" >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row g-1">
+                      <div class="col-6">
+                        <div class="input-group mb-3">
+                          <span class="input-group-text">R$</span>
+                          <input type="text" class="form-control" placeholder="Valor Total" aria-label="Real">
+                          <span class="input-group-text">.00</span>
+                        </div>
+                      </div>
+
+                      <div class="col-6">
+                        <div class="input-group mb-3">
+                          <span class="input-group-text">R$</span>
+                          <input type="text" class="form-control" placeholder="Frete" aria-label="Real">
+                          <span class="input-group-text">.00</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row g-1">
+                      <div class="col">
+                        <select class="form-select mb-3" aria-label="Default select example">
+                          <option selected>Something...</option>
+                          <option value="1">some..</option>
+                          <option value="2">any...</option>
+                          <option value="3">others...</option>
+                        </select>
+                      </div>
+                    
+                      <div class="col">
+                        <select class="form-select mb-3" aria-label="Default select example">
+                          <option selected>Status</option>
+                          <option value="1">AGUARDANDO PAGAMENTO</option>
+                          <option value="2">REPROVADO</option>
+                          <option value="3">PAGO</option>
+                        </select>
+                      </div>
+
+                      <div class="col">
+                        <input type="date" class="form-control" placeholder="Data Nascimento" aria-label="DataNascimento">
+                      </div>
+                    </div>
+                    </div>
+                  </fieldset>
+                </div>
+
+                <div class="modal-footer">
+                  <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                  <input type="submit" class="btn btn-success" value="Salvar">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delete Modal HTML -->
+        <div id="deleteVendasModal" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form>
+                <div class="modal-header">						
+                  <h4 class="modal-title">Delete Employee</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">					
+                  <p>Are you sure you want to delete these Records?</p>
+                  <p class="text-warning"><small>This action cannot be undone.</small></p>
+                </div>
+                <div class="modal-footer">
+                  <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                  <input type="submit" class="btn btn-danger" value="Delete">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="github" viewBox="0 0 16 16">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+            </symbol>
+          
+            <symbol id="twitter" viewBox="0 0 16 16">
+              <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+            </symbol>
+          
+            <symbol id="facebook" viewBox="0 0 16 16">
+              <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+            </symbol>
+          </svg>
+
+          <!-- #Buscar Clientes-->
+          <script>
+            const input = document.getElementById('txtBusca');
+            const trs = [...document.querySelectorAll('#lista tbody tr')];
+
+            document.getElementById('txtBusca').addEventListener('keyup', function () {
+
+              const search = input.value.toLowerCase();
+              trs.forEach(el => {
+                const matches = el.textContent.toLowerCase().includes(search);
+                el.style.display = matches ? 'table-row' : 'none';
+              });
+            });
+          </script>
+
+          <!-- #Inserir Endereço-->
+          <script>
+                  document.getElementById('addEndereco').addEventListener('click', function () {
+  
+                  var html = document.getElementById('enderecoPrincipal').innerHTML;
+                  var clone = document.createElement('div');
+                  clone.innerHTML = html;
+                  document.getElementById('enderecoPrincipal').appendChild(clone);  
+                });
+          </script>
+          <!-- #Delete Endereço-->
+          <script>
+            document.getElementById('DeleteEndereco').addEventListener('click', function () {
+
+            var lastEndereco = document.getElementById('enderecoPrincipal').lastChild;
+            document.getElementById('enderecoPrincipal').removeChild(lastEndereco);
+          });
+          </script>
+          <!-- #Mostrar Endereço-->
+          <script>
+            document.getElementById('editEndereco').addEventListener('click', function () {
+            document.getElementById("enderecoList").style.display = 'block'
+          });
+          </script>
+
+
+          <!-- #Inserir Cartão-->
+          <script>
+            document.getElementById('addcartao').addEventListener('click', function () {
+
+            var html = document.getElementById('cartaoPrincipal').innerHTML;
+            var clone = document.createElement('div');
+            clone.innerHTML = html;
+            document.getElementById('cartaoPrincipal').appendChild(clone);  
+          });
+          </script>
+          <!-- #Delete Cartão-->
+          <script>
+            document.getElementById('Deletecartao').addEventListener('click', function () {
+
+            var lastEndereco = document.getElementById('cartaoPrincipal').lastChild;
+            document.getElementById('cartaoPrincipal').removeChild(lastEndereco);
+          });
+          </script>
+          <!-- #Mostrar Cartão-->
+          <script>
+            document.getElementById('editcartao').addEventListener('click', function () {
+              document.getElementById("cartaoList").style.display = 'block'
+          });
+          </script>
+
+
+    </body>
+</html>
