@@ -1,45 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import './asserts/reset.css';
+import './asserts/style.css';
 import { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import Home from './paginas/home';
+import ListaCliente from './paginas/crudCliente/ListaCliente';
+import EditarCliente from './paginas/crudCliente/EditarCliente';
 
 class App extends Component {
-  state = {
-    isLoading: true,
-    clientes: []
-  };
-
-  async componentDidMount() {
-    const response = await fetch('/api/clientes');
-    const body = await response.json();
-    this.setState({ clientes: body, isLoading: false });
-  }
-
   render() {
-    const {clientes, isLoading} = this.state;
-
-    if (isLoading) {
-      return <p>Loading...</p>;
-    }
-
-    console.log(clientes);
-
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <div className="App-intro">
-            <h2>clientes List</h2>
-            {clientes.map(group =>
-              <div key={group.id}>
-                <p>{group.nomeCompleto}</p>
-                <p>{group.cpf}</p>
-              </div>
-            )}
-          </div>
-        </header>
-      </div>
-    );
-  }
+      <Router>
+        <Switch>
+          <Route path='/' exact={true} component={Home}/>
+          <Route path="/crudCliente" exact={true} component={ListaCliente}/>
+          <Route path="/clientes/:id" component={EditarCliente}/>
+        </Switch>
+    </Router>
+    )
+  };
 }
 
 export default App;
