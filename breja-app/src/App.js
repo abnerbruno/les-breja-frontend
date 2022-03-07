@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import ListaCliente from './paginas/crudCliente/ListaCliente';
 import EditarCliente from './paginas/crudCliente/EditarCliente';
+import ListaCerveja from './paginas/crudProduto/ListaCerveja';
+import EditarCerveja from './paginas/crudProduto/EditarCerveja';
 
 class App extends Component {
   render() {
@@ -14,7 +16,10 @@ class App extends Component {
         <Switch>
           <Route path='/' exact={true} component={ListaCliente}/>
           <Route path="/listaCliente" exact={true} component={ListaCliente}/>
-          <Route path="/clientes/:id" component={EditarCliente}/>
+          <Route path="/cliente/:id" component={EditarCliente}/>
+
+          <Route path="/listaCerveja" exact={true} component={ListaCerveja}/>
+          <Route path="/cerveja/:id" component={EditarCerveja}/>
         </Switch>
     </Router>
     )

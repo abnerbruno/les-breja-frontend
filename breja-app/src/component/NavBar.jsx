@@ -12,25 +12,25 @@ class NavBar extends Component {
                   <div className="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
                     <ul className="navbar-nav">
                       <li className="nav-item">
-                        <a className="nav-link active" aria-current="page" href="/crudCliente">Clientes</a>
+                        <a className="nav-link" aria-current="page" href="/listaCliente">Clientes</a>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link" href="/crudProduto">Produtos</a>
+                        <a className="nav-link" href="/listaCerveja">Cervejas</a>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link" href="/crudVenda">Vendas</a>
+                        <a className="nav-link" href="/listaVendas">Vendas</a>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link" href="/crudEnvio">Envios</a>
+                        <a className="nav-link" href="/listaEnvios">Envios</a>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link" href="/crudCupon">Cupum</a>
+                        <a className="nav-link" href="/listaCupons">Cupum</a>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link" href="/crudUsuario">Usuarios</a>
+                        <a className="nav-link" href="/listaUsuarios">Usuarios</a>
                       </li>
                       <li className="nav-item">
-                        <a className="nav-link" href="/crudTroca">Trocas</a>
+                        <a className="nav-link" href="/listaTrocas">Trocas</a>
                       </li>
                     </ul>
                   </div>

@@ -53,7 +53,7 @@ class ListaCliente extends Component {
           <td>{cliente.dataNascimento}</td>
           <td>
           <ButtonGroup>
-            <Button size="sm" color="primary" tag={Link} to={"/clientes/" + cliente.id}>Edit</Button>
+            <Button size="sm" color="primary" tag={Link} to={"/cliente/" + cliente.id}>Edit</Button>
             <Button size="sm" color="danger" onClick={() => this.remove(cliente.id)}>Delete</Button>
           </ButtonGroup>
           </td>
@@ -66,7 +66,7 @@ class ListaCliente extends Component {
         <Header />
         <NavBar />
         <Container>
-          <TituloDaTabela nomeEntidade = {"clientes"} />
+          <TituloDaTabela nomeEntidade = {"Cliente"} />
           <Table id="lista" className="table table-hover table-striped">
             <thead>
               <tr>

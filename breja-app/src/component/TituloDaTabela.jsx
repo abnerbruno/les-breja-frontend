@@ -7,7 +7,7 @@ class TituloDaTabela extends Component {
             <div className="table-title">
             <div className="row">
               <div className="col-sm-3">
-                <h2>Manage <b>{this.props.nomeEntidade}</b></h2>
+                <h2>Gerenciar <b>{this.props.nomeEntidade}</b></h2>
               </div>
               <div className="col-sm-6">
                 <Button className="btn btn-success" tag={Link} to={"/" + this.props.nomeEntidade + "/new"}><span>Add</span></Button>			
