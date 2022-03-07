@@ -46,7 +46,7 @@ class ListaCliente extends Component {
           <td>{cliente.id}</td>
           <td>{cliente.nomeCompleto}</td>
           <td>{cliente.cpf}</td>
-          <td>{cliente.rank}</td>
+          <td>{cliente.classificacao}</td>
           <td>{cliente.status}</td>
           <td>{cliente.email}</td>
           <td>{cliente.telefone}</td>

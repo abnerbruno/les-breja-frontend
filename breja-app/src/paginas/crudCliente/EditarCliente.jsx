@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { withRouter } from 'react-router-dom';
-import { Container } from "reactstrap";
+import { withRouter, Link } from 'react-router-dom';
+import { Button, Container, FormGroup } from "reactstrap";
+import ListaCartao from "./ListaCartao";
+import ListaEndereco from "./ListaEndereco";
 
 class EditarCliente extends Component {
-  emptyItem = {
+  emptyCliente = {
     nomeCompleto: "",
     cpf: "",
     classificacao: "",
@@ -41,197 +43,226 @@ class EditarCliente extends Component {
 
   constructor(props) {
     super(props);
+
+    console.log(`iniciar construtor do Cliente`);
+
     this.state = {
-      item: this.emptyItem,
+      cliente: this.emptyCliente,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  //componentWillMount = chamado antes de iniiciar a renderização 
+  //componentDidMount = chamado depois de renderizado. 
+
   async componentDidMount() {
-      console.log(this.paramnsRequest);
     if (this.props.match.params.id !== "new") {
       const cliente = await (
         await fetch(`/api/cliente/${this.props.match.params.id}`)
       ).json();
-      console.log(cliente);
-      this.setState({ item: cliente });
+
+      console.log(`será renderizado novamente mudando o State do Cliente`);
+
+      this.setState({ cliente: cliente });
     }
   }
 
   handleChange(event) {
+    event.preventDefault();
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    let item = { ...this.state.item };
-    item[name] = value;
-    this.setState({ item });
+    let cliente = { ...this.state.cliente};
+    cliente[name] = value;
+    this.setState({ cliente });
   }
 
   async handleSubmit(event) {
     event.preventDefault();
-    const { item } = this.state;
+    const { cliente } = this.state;
 
-    await fetch("/api/cliente" + (item.id ? "/" + item.id : ""), {
-      method: item.id ? "PUT" : "POST",
+    console.log(`será feito um requet : /api/cliente ${cliente.id} ? /  ${cliente.id} `);
+
+    await fetch("/api/cliente" + (cliente.id ? "/" + cliente.id : ""), {
+      method: cliente.id ? 'PUT' : 'POST',
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(item),
+      body: JSON.stringify(cliente),
     });
-    this.props.history.push("/clientes");
+
+    console.log(`apos o reques será retornado para pagina : /listaCliente`);
+
+    this.props.history.push("/listaCliente");
+  }
+
+  createEndereco(){
+
+    console.log("Criar novo endereco");
+
+    const novoEndereco = {
+        longadouro: "",
+        tipoLongadouro: "",
+        tipoResidencia: "",
+        numero: "",
+        bairro: "",
+        cidade: "",
+        estado: "",
+        cep: "",
+        pais: "",
+        descricao: "", 
+    };
+
+    const oldCliente = {...this.state.cliente}
+    oldCliente.enderecos.push(novoEndereco)
+
+    console.log(`Adicionado um novo endereço`);
+
+    this.setState({ cliente : oldCliente})
+  }
+
+  editarEndereco(index, name, value){
+    const oldCliente = {...this.state.cliente}
+    oldCliente.enderecos[index][name] = value
+
+    console.log(`Etidado um endereço no Cliente`);
+
+    this.setState({ cliente : oldCliente })
+  }
+
+  deleteEndereco(index){
+    const oldCliente = {...this.state.cliente}
+    oldCliente.enderecos.splice(index,1);
+
+    console.log(`Deletado um endereço`);
+
+    this.setState({ cliente : oldCliente })
+  }
+
+  createCartao(){
+
+    console.log("Criar novo Cartão");
+
+    const novoCartao =  {
+      numeroCartao: "",
+      tipoConta: "",
+      codigoSeguranca: "",
+      bandeira: "",
+      descricao: "",
+    };
+
+    const oldCliente = {...this.state.cliente}
+    oldCliente.cartoes.push(novoCartao)
+
+    console.log(`Adicionado um novo Cartao`);
+
+    this.setState({ cliente : oldCliente})
+  }
+
+  editarCartao(index, name, value){
+    const oldCliente = {...this.state.cliente}
+    oldCliente.cartoes[index][name] = value
+
+    console.log(`Editado um Cartao no Cliente`);
+
+    this.setState({ cliente : oldCliente })
+  }
+
+  deleteCartao(index){
+    const oldCliente = {...this.state.cliente}
+    oldCliente.cartoes.splice(index,1);
+
+    console.log(`Deletado um Cartão`);
+
+    this.setState({ cliente : oldCliente })
   }
 
   render(){
-    const {item} = this.state;
-    const title = <h2>{item.id ? 'Edit Cliente' : 'Add Cliente'}</h2>;
+    const {cliente} = this.state;
+    const title = <h2>{cliente.id ? 'Editar Cliente' : 'Novo Cliente'}</h2>;
 
       return(
-          <Container>
-            <form action="/api/cliente" method="post">
+          <Container className="bg-light">
+            {title}
+            <form onSubmit={this.handleSubmit}>
                 
-                <fieldset>
-                  <label for="endereco"/><h3>Dados Pessoais</h3>				
-                    <div class="input-group mb-3">
-                      <span class="input-group-text">Nome Completo</span>
-                      <input type="text" aria-label="Nome Completo" class="form-control" value={item.nomeCompleto || ''}/>
-                    </div>
-
-                    <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="Email" aria-label="email" value={item.email || ''}/>
-                    </div>
-
-                    <div class="row">
-                      <div class="input-group mb-3 col">
-                        <input type="text" class="form-control" placeholder="Senha" aria-label="Senha" aria-describedby="basic-addon1" value={item.senha || ''}/>
+                <fieldset >
+                  <Container>
+                    <label htmlFor="dadosPessoais"/><h3>Dados Pessoais</h3>				
+                      <div className="input-group mb-3">
+                        <span className="input-group-text">Nome Completo</span>
+                        <input type="text" aria-label="Nome Completo" className="form-control" name="nomeCompleto" value={cliente.nomeCompleto || ''} onChange={this.handleChange} />
                       </div>
 
-                      <div class="input-group mb-3 col">
-                        <input type="text" class="form-control" placeholder="Repetir Senha" aria-label="RepetirSenha" aria-describedby="basic-addon1" value={item.senha || ''}/>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="input-group mb-3 col">
-                        <input type="tel" class="form-control" placeholder="Telefone (XX) XXXXX-..." aria-label="Telefone" aria-describedby="basic-addon1"/>
+                      <div className="input-group mb-3">
+                        <input type="text" className="form-control" placeholder="Email" aria-label="email" name="email" value={cliente.email || ''} onChange={this.handleChange} />
                       </div>
 
-                      <div class="mb-3 col">
-                        <input type="date" class="form-control" placeholder="Data Nascimento" aria-label="DataNascimento"/>
+                      <div className="row">
+                        <div className="input-group mb-3 col">
+                          <input type="text" className="form-control" placeholder="Senha" aria-label="Senha" aria-describedby="basic-addon1" name="senha" value={cliente.senha || ''} onChange={this.handleChange} />
+                        </div>
+
+                        <div className="input-group mb-3 col">
+                          <input type="text" className="form-control" placeholder="Repetir Senha" aria-label="RepetirSenha" aria-describedby="basic-addon1" name="senha" value={cliente.senha || ''} onChange={this.handleChange} />
+                        </div>
                       </div>
 
-                      <div class="mb-3 col">
-                        <input type="number" class="form-control" placeholder="CPF" aria-label="CPF"/>
+                      <div className="row">
+                        <div className="input-group mb-3 col">
+                          <input type="tel" className="form-control" placeholder="Telefone (XX) XXXXX-..." aria-label="Telefone" aria-describedby="basic-addon1" name="telefone" value={cliente.telefone || ''} onChange={this.handleChange} />
+                        </div>
+
+                        <div className="mb-3 col">
+                          <input type="text" className="form-control" placeholder="Data Nascimento" aria-label="DataNascimento" name="dataNascimento" value={cliente.dataNascimento || ''} onChange={this.handleChange} />
+                        </div>
+
+                        <div className="mb-3 col">
+                          <input type="number" className="form-control" placeholder="CPF" aria-label="CPF" name="cpf" value={cliente.cpf || ''} onChange={this.handleChange} />
+                        </div>
                       </div>
-                    </div>
 
-                    <div class="row">
-                      <div class="col">
-                        <select class="form-select mb-3" aria-label="Default select example">
-                          <option selected>Genero</option>
-                          <option value="1">Masculino</option>
-                          <option value="2">Feminino</option>
-                          <option value="3">Outros</option>
-                        </select>
-                      </div>
-                    
-                      <div class="col">
-                        <select class="form-select mb-3" aria-label="Default select example">
-                          <option selected>Status</option>
-                          <option value="1">Ativo</option>
-                          <option value="2">Inativado</option>
-                          <option value="3">Outros</option>
-                        </select>
-                      </div>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <label for="endereco"><h3>Endereço</h3></label>
-                    <i id="addEndereco" class="material-icons">&#xE147;</i>
-                    <i id="DeleteEndereco" class="material-icons">&#xE15C;</i>
-
-                    <div id="enderecoPrincipal" class="row g-1">
-                      <div class="row">
-                        <div class="col-12 mb-3">
-                          <input type="text" class="form-control" placeholder="Longratouro" aria-label="City"/>
-                        </div>
-                        <div class="col-3 mb-3">
-                          <input type="text" class="form-control" placeholder="Tipo Longratouro" aria-label="State"/>
-                        </div>
-                        <div class="col-3 mb-3">
-                          <input type="text" class="form-control" placeholder="Tipo de residência" aria-label="Zip"/>
-                        </div>
-                        <div class="col-3 mb-3">
-                          <input type="number" class="form-control" placeholder="Número" aria-label="numero"/>
-                        </div>
-                        <div class="col-3 mb-3">
-                          <input type="text" class="form-control" placeholder="Bairro" aria-label="State"/>
-                        </div>
-
-                        <div class="col-3 mb-3">
-                          <input type="text" class="form-control" placeholder="Cidade" aria-label="cidade"/>
-                        </div>
-                        <div class="col-3 mb-3">
-                          <input type="text" class="form-control" placeholder="Estado" aria-label="estado"/>
-                        </div>
-                        <div class="col-3 mb-3">
-                          <input type="text" class="form-control" placeholder="CEP" aria-label="cep"/>
-                        </div>
-
-                        <div class="col-3 mb-3">
-                          <input type="text" class="form-control" placeholder="Pais" aria-label="pais"/>
-                        </div>
-
-                        <div class="col-6 mb-3">
-                          <input type="text" class="form-control" placeholder="ID Endereço" aria-label="idEndereco"/>
-                        </div>
-
-                        <div class="col-6 mb-3">
-                          <input type="text" class="form-control" placeholder="Descrição" aria-label="descricao"/>
-                        </div>
-                     </div>
-
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="enderecoCobranca" id="radioEnderecoCobrancaChecked" checked/>
-                        <label class="form-check-label" for="radioEnderecoCobrancaChecked">Endereço de Cobrança</label>
-                      </div>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <label for="cartao"><h3>Cartão</h3></label>
-                    <i id="addcartao" class="material-icons">&#xE147;</i>
-                    <i id="Deletecartao" class="material-icons">&#xE15C;</i>
-
-                    <div id="cartaoPrincipal" class="row g-1">
-                      <div class="row">
-                        <div class="col-12 mb-3">
-                          <input type="text" class="form-control" placeholder="Nº do Cartão" aria-label="City"/>
-                        </div>
-                        <div class="col mb-3">
-                          <input type="text" class="form-control" placeholder="Tipo de residência" aria-label="Zip"/>
-                        </div>
-                        <div class="col mb-3">
-                          <input type="number" class="form-control" placeholder="Código de Segurança" aria-label="numero"/>
-                        </div>
-                        <div class="col mb-3">
-                          <select class="form-select" aria-label="Default select example">
-                            <option selected>Bandeiras</option>
-                            <option value="1">01</option>
-                            <option value="2">02</option>
-                            <option value="3">03...</option>
+                      <div className="row">
+                        <div className="col">
+                          <select className="form-select mb-3" aria-label="Default select example">
+                            <option name="genero" onChange={this.handleChange}>{cliente.genero || 'Genero'}</option>
+                            <option value="1">Masculino</option>
+                            <option value="2">Feminino</option>
+                            <option value="3">Outros</option>
                           </select>
                         </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="cartaoPrincipal" id="radiocartaoPrincipalChecked" checked/>
-                          <label class="form-check-label" for="radiocartaoPrincipalChecked">Cartão Principal</label>
+                      
+                        <div className="col">
+                          <select className="form-select mb-3" aria-label="Default select example">
+                            <option name="status" onChange={this.handleChange}>{cliente.status || 'Status'}</option>
+                            <option value="1">Ativo</option>
+                            <option value="2">Inativado</option>
+                            <option value="3">Outros</option>
+                          </select>
                         </div>
                       </div>
-                    </div>
+                    </Container>
                 </fieldset>
 
+                <ListaEndereco 
+                enderecos={this.state.cliente.enderecos} 
+                createEndereco={this.createEndereco.bind(this)}
+                editarEndereco={this.editarEndereco.bind(this)}
+                deleteEndereco={this.deleteEndereco.bind(this)}/>
+
+
+                <ListaCartao 
+                cartoes={this.state.cliente.cartoes}
+                createCartao={this.createCartao.bind(this)}
+                editarCartao={this.editarCartao.bind(this)}
+                deleteCartao={this.deleteCartao.bind(this)}/>
+
+                <FormGroup>
+                  <Button color="primary" type="submit">Salvar</Button>{' '}
+                  <Button color="secondary" tag={Link} to="/listaCliente">Cancelar</Button>{' '}
+                </FormGroup>
             </form>
         </Container>
       )
