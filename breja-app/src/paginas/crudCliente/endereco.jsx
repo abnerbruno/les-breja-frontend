@@ -39,7 +39,9 @@ class Endereco extends Component {
 
     return (
       <div className="row">
-        <h4>{endereco.descricao}</h4>
+        <div className="input-group col-12">
+          <span className="input-group-text">{endereco.descricao}</span>
+        </div>
 
         <div>
           <input

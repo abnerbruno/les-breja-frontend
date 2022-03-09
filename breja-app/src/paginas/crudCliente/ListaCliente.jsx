@@ -1,9 +1,10 @@
 import { Component } from "react";
-import { Container, Table, ButtonGroup, Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Container, Table, ButtonGroup, Button } from "reactstrap";
+import { Link } from "react-router-dom";
 import Header from "../../component/Header";
 import NavBar from "../../component/NavBar";
 import TituloDaTabela from "../../component/TituloDaTabela";
+import Footer from "../../component/Footer";
 
 class ListaCliente extends Component {
   constructor(props) {
@@ -43,19 +44,32 @@ class ListaCliente extends Component {
     const listaClientes = clientes.map((cliente) => {
       return (
         <tr key={cliente.id}>
-          <td>{cliente.id}</td>
-          <td>{cliente.nomeCompleto}</td>
-          <td>{cliente.cpf}</td>
-          <td>{cliente.classificacao}</td>
-          <td>{cliente.status}</td>
-          <td>{cliente.email}</td>
-          <td>{cliente.telefone}</td>
-          <td>{cliente.dataNascimento}</td>
+          <td className="text-center"> {cliente.id}</td>
+          <td className="text-center"> {cliente.nomeCompleto}</td>
+          <td className="text-center"> {cliente.cpf}</td>
+          <td className="text-center"> {cliente.classificacao}</td>
+          <td className="text-center"> {cliente.status}</td>
+          <td className="text-center"> {cliente.email}</td>
+          <td className="text-center"> {cliente.telefone}</td>
+          <td className="text-center"> {cliente.dataNascimento}</td>
           <td>
-          <ButtonGroup>
-            <Button size="sm" color="primary" tag={Link} to={"/cliente/" + cliente.id}>Edit</Button>
-            <Button size="sm" color="danger" onClick={() => this.remove(cliente.id)}>Delete</Button>
-          </ButtonGroup>
+            <ButtonGroup>
+              <Button
+                size="sm"
+                color="primary"
+                tag={Link}
+                to={"/cliente/" + cliente.id}
+              >
+                Edit
+              </Button>
+              <Button
+                size="sm"
+                color="danger"
+                onClick={() => this.remove(cliente.id)}
+              >
+                Delete
+              </Button>
+            </ButtonGroup>
           </td>
         </tr>
       );
@@ -66,26 +80,25 @@ class ListaCliente extends Component {
         <Header />
         <NavBar />
         <Container>
-          <TituloDaTabela nomeEntidade = {"Cliente"} />
+          <TituloDaTabela nomeEntidade={"Cliente"} />
           <Table id="lista" className="table table-hover table-striped">
             <thead>
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nome Completo</th>
-                <th scope="col">CPF</th>
-                <th scope="col">Rank</th>
-                <th scope="col">Status</th>
-                <th scope="col">Email</th>
-                <th scope="col">Telefone</th>
-                <th scope="col">Data Cadastro</th>
-                <th scope="col">Ação</th>
+                <th scope="col" className="text-center">ID</th>
+                <th scope="col" className="text-center">Nome Completo</th>
+                <th scope="col" className="text-center">CPF</th>
+                <th scope="col" className="text-center">Rank</th>
+                <th scope="col" className="text-center">Status</th>
+                <th scope="col" className="text-center">Email</th>
+                <th scope="col" className="text-center">Telefone</th>
+                <th scope="col" className="text-center">Data Cadastro</th>
+                <th scope="col" className="text-center">Ação</th>
               </tr>
             </thead>
-            <tbody id="tbody">
-                {listaClientes}
-            </tbody>
+            <tbody id="tbody">{listaClientes}</tbody>
           </Table>
         </Container>
+        <Footer />
       </div>
     );
   }

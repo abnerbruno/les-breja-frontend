@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Header from "../../component/Header";
 import NavBar from "../../component/NavBar";
 import TituloDaTabela from "../../component/TituloDaTabela";
+import Footer from "../../component/Footer";
 
 class ListaCerveja extends Component {
 
@@ -30,7 +31,7 @@ class ListaCerveja extends Component {
       },
     }).then(() => {
       let updatedCervejas = [...this.state.cervejas].filter((i) => i.id !== id);
-      this.setState({ Cervejas: updatedCervejas });
+      this.setState({ cervejas: updatedCervejas });
     });
   }
 
@@ -44,15 +45,14 @@ class ListaCerveja extends Component {
     const listaCervejas = cervejas.map((cerveja) => {
       return (
         <tr key={cerveja.id}>
-          <td>{cerveja.id}</td>
-          <td>{cerveja.nome}</td>
-          <td>{cerveja.nomeFornecedor}</td>
-          <td>{cerveja.valorDeVenda}</td>
-          <td>{cerveja.margemDeLucro}</td>
-          <td>{cerveja.quantidade}</td>
-          <td>{cerveja.status}</td>
-          <td>{cerveja.descricao}</td>
-          <td>{cerveja.dataCadastro}</td>
+          <td className="text-center"> {cerveja.id}</td>
+          <td className="text-center"> {cerveja.nome}</td>
+          <td className="text-center"> {cerveja.nomeFornecedor}</td>
+          <td className="text-center"> {cerveja.valorDeVenda}</td>
+          <td className="text-center"> {cerveja.margemDeLucro}</td>
+          <td className="text-center"> {cerveja.status}</td>
+          <td className="text-center"> {cerveja.descricao}</td>
+          <td className="text-center"> {cerveja.dataCadastro}</td>
           <td>
           <ButtonGroup>
             <Button size="sm" color="primary" tag={Link} to={"/cerveja/" + cerveja.id}>Edit</Button>
@@ -72,16 +72,15 @@ class ListaCerveja extends Component {
           <Table id="lista" className="table table-hover table-striped">
             <thead>
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Nome do Fornecedor</th>
-                <th scope="col">Valor de Venda</th>
-                <th scope="col">Margem de Lucro</th>
-                <th scope="col">Quantidade</th>
-                <th scope="col">Status</th>
-                <th scope="col">Descrição</th>
-                <th scope="col">Data Cadastro</th>
-                <th scope="col">Ação</th>
+                <th scope="col" className="text-center">ID</th>
+                <th scope="col" className="text-center">Nome</th>
+                <th scope="col" className="text-center">Nome do Fornecedor</th>
+                <th scope="col" className="text-center">Valor de Venda</th>
+                <th scope="col" className="text-center">Margem de Lucro</th>
+                <th scope="col" className="text-center">Status</th>
+                <th scope="col" className="text-center">Descrição</th>
+                <th scope="col" className="text-center">Data Cadastro</th>
+                <th scope="col" className="text-center">Ação</th>
               </tr>
             </thead>
             <tbody id="tbody">
@@ -89,6 +88,7 @@ class ListaCerveja extends Component {
             </tbody>
           </Table>
         </Container>
+        <Footer />
       </div>
     );
   }

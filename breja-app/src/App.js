@@ -8,6 +8,8 @@ import ListaCliente from './paginas/crudCliente/ListaCliente';
 import EditarCliente from './paginas/crudCliente/EditarCliente';
 import ListaCerveja from './paginas/crudProduto/ListaCerveja';
 import EditarCerveja from './paginas/crudProduto/EditarCerveja';
+import ListaPedido from './paginas/crudPedido/ListaPedido';
+import EditarPedido from './paginas/crudPedido/EditarPedido';
 
 class App extends Component {
   render() {
@@ -20,6 +22,9 @@ class App extends Component {
 
           <Route path="/listaCerveja" exact={true} component={ListaCerveja}/>
           <Route path="/cerveja/:id" component={EditarCerveja}/>
+
+          <Route path="/listaPedido" exact={true} component={ListaPedido}/>
+          <Route path="/pedido/:id" component={EditarPedido}/>
         </Switch>
     </Router>
     )
