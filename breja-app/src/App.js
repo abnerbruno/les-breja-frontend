@@ -10,13 +10,14 @@ import ListaCerveja from './paginas/crudProduto/ListaCerveja';
 import EditarCerveja from './paginas/crudProduto/EditarCerveja';
 import ListaPedido from './paginas/crudPedido/ListaPedido';
 import EditarPedido from './paginas/crudPedido/EditarPedido';
+import Home from './paginas/home';
 
 class App extends Component {
   render() {
     return (
       <Router>
         <Switch>
-          <Route path='/' exact={true} component={ListaCliente}/>
+          <Route path='/' exact={true} component={Home}/>
           <Route path="/listaCliente" exact={true} component={ListaCliente}/>
           <Route path="/cliente/:id" component={EditarCliente}/>
 

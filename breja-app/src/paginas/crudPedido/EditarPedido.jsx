@@ -7,12 +7,17 @@ import Footer from "../../component/Footer";
 
 class EditarPedido extends Component {
   emptyPedido = {
+    id : "",
     valorTotal: "",
     frete: "",
     status: "",
-    clienteId: "",
-    nomeCliente: "",
-    emailCliente: "",
+    
+    cliente : {
+      id : "",
+      nomecompleto : "",
+      cpf : "",
+      email : ""
+    },
 
     enderecoEnvio: {
       longadouro: "",
@@ -76,6 +81,7 @@ class EditarPedido extends Component {
       ).json();
 
       console.log(`será renderizado novamente mudando o State do pedido`);
+      console.log(pedido);
 
       this.setState({ pedido: pedido });
     }
@@ -183,7 +189,7 @@ class EditarPedido extends Component {
                       aria-label="Nome Cliente"
                       className="form-control"
                       name="nomeCliente"
-                      value={pedido.nomeCliente || ""}
+                      value={pedido.cliente.nomecompleto || ""}
                       onChange={this.handleChange}
                     />
                   </div>

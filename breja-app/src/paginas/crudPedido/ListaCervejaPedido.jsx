@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container } from "reactstrap";
-import Cerveja from "./Cerveja";
+import Cerveja from "./CervejaPedido";
 
 class ListaCervejaPedido extends Component {
     render(){
